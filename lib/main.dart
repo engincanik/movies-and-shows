@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movies_and_shows/home/home_screen.dart';
+import 'package:movies_and_shows/splash_screen/splash_bindings.dart';
+import 'package:movies_and_shows/splash_screen/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,36 +11,18 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Movies and Shows',
-      home: MyHomePage(title: 'Movies and Shows'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Column(
-        children: [
-          Image.network(
-            'https://avatars.githubusercontent.com/u/15329674?v=4',
-          )
-        ],
-      ),
+      debugShowCheckedModeBanner: false,
+      getPages: [
+        GetPage(
+            name: '/splash',
+            page: () => SplashScreen(),
+            binding: SplashBinding()),
+        GetPage(name: '/home', page: () => HomeScreen()),
+        // GetPage(name: '/detail', page: (Movie movie) => DetailPage(Movie() movie), binding: DetailBinding())
+      ],
+      initialRoute: '/splash',
     );
   }
 }
