@@ -23,7 +23,7 @@ class TvShowRequest {
   factory TvShowRequest.fromJson(Map<String, dynamic> json) => TvShowRequest(
         page: json["page"],
         tvShows:
-            List<TvShow>.from(json["tv_shows"].map((x) => TvShow.fromJson(x))),
+            List<TvShow>.from(json["results"].map((x) => TvShow.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );

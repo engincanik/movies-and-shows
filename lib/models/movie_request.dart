@@ -22,7 +22,7 @@ class MovieRequest {
 
   factory MovieRequest.fromJson(Map<String, dynamic> json) => MovieRequest(
         page: json["page"],
-        movies: List<Movie>.from(json["movies"].map((x) => Movie.fromJson(x))),
+        movies: List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );

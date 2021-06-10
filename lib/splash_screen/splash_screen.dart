@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+import 'package:movies_and_shows/splash_screen/splash_controller.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key key}) : super(key: key);
@@ -10,14 +11,18 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final splashController = Get.find<SplashController>();
+
+  void changeScreen() {
+    Get.offNamed('/home');
+  }
+
   @override
   void initState() {
     super.initState();
-    // Check internet connection if true get movies and shows
-    // if false go to Home say no connection
     Future.delayed(
-      Duration(seconds: 4),
-      () => {Get.toNamed('/home')},
+      Duration(seconds: 5),
+      () => {Get.offNamed('/home')},
     );
   }
 
@@ -47,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(color: Colors.white70, fontSize: 24.0),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
