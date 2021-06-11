@@ -16,7 +16,6 @@ class NetworkHelper {
     switch (response.statusCode) {
       case 200:
         var jsonString = response.body;
-        print("Movies: ${movieRequestFromJson(jsonString).movies}");
         return movieRequestFromJson(jsonString).movies;
         break;
       case 400:

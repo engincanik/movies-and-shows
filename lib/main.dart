@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movies_and_shows/home/home_bindings.dart';
 import 'package:movies_and_shows/home/home_screen.dart';
 import 'package:movies_and_shows/splash_screen/splash_bindings.dart';
 import 'package:movies_and_shows/splash_screen/splash_screen.dart';
@@ -19,7 +20,11 @@ class MyApp extends StatelessWidget {
             name: '/splash',
             page: () => SplashScreen(),
             binding: SplashBinding()),
-        GetPage(name: '/home', page: () => HomeScreen()),
+        GetPage(
+          name: '/home',
+          page: () => HomeScreen(),
+          binding: HomeBindings(),
+        ),
         // GetPage(name: '/detail', page: (Movie movie) => DetailPage(Movie() movie), binding: DetailBinding())
       ],
       initialRoute: '/splash',

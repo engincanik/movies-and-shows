@@ -3,14 +3,14 @@ import 'package:movies_and_shows/models/movie.dart';
 import 'package:movies_and_shows/models/tv_show.dart';
 import 'package:movies_and_shows/services/networking.dart';
 
-class SplashController extends GetxController {
+class HomeController extends GetxController {
   RxBool isLoading = true.obs;
   var movieList = <Movie>[].obs;
   var showList = <TvShow>[].obs;
 
   @override
   void onInit() {
-    // fetchWhole();
+    fetchWhole();
     super.onInit();
   }
 
@@ -19,6 +19,7 @@ class SplashController extends GetxController {
     fetchMovies();
     fetchTvShows();
     isLoading(false);
+    print("isLoading: $isLoading");
   }
 
   void fetchMovies() async {
