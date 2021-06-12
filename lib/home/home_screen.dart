@@ -25,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Obx(() {
-            print(homeController.isLoading.value);
             if (homeController.isLoading.value) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -76,12 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             Container(
                               width: 250,
                               child: Text(
-                                'Movie ${homeController.movieList[rndNumber].id}',
+                                'Movie',
                                 textAlign: TextAlign.left,
                                 style: TextStyle(
-                                  color: Color(0xffDCFFFD),
+                                  color: Colors.white54,
                                   fontSize: 16.0,
-                                  fontWeight: FontWeight.w600,
                                   letterSpacing: 1.2,
                                 ),
                               ),

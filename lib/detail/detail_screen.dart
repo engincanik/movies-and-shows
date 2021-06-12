@@ -11,8 +11,11 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
-    return Get.arguments[1] == "movie"
-        ? MovieDisplay(movie: Get.arguments[0])
-        : ShowDisplay(tvShow: Get.arguments[0]);
+    return Scaffold(
+      backgroundColor: Color(0xFF333333),
+      body: Get.arguments[1] == "movie"
+          ? MovieDisplay(movie: Get.arguments[0])
+          : ShowDisplay(tvShow: Get.arguments[0]),
+    );
   }
 }
