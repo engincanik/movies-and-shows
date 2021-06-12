@@ -35,7 +35,8 @@ class MovieCarousel extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               Movie movie = movies[index];
               return GestureDetector(
-                onTap: () => Get.toNamed('/splash'),
+                onTap: () =>
+                    Get.toNamed('/detail', arguments: [movies[index], 'movie']),
                 child: Container(
                   margin: EdgeInsets.all(10.0),
                   width: 200.0,

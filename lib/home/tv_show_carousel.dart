@@ -35,7 +35,8 @@ class TvShowCarousel extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               TvShow tvShow = tvShows[index];
               return GestureDetector(
-                onTap: () => Get.toNamed('/splash'),
+                onTap: () => Get.toNamed('/detail',
+                    arguments: [tvShows[index], 'tvShow']),
                 child: Container(
                   margin: EdgeInsets.all(10.0),
                   width: 200.0,
