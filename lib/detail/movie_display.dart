@@ -37,84 +37,82 @@ class MovieDisplay extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 16),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 50.0,
-                    child: Stack(
-                      children: <Widget>[
-                        Center(
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            child: new CircularProgressIndicator(
-                              strokeWidth: 5,
-                              value: 1.0,
-                              valueColor: AlwaysStoppedAnimation(valueColor),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              width: 50,
+                              height: 50,
+                              child: new CircularProgressIndicator(
+                                strokeWidth: 3,
+                                value: 1.0,
+                                valueColor: AlwaysStoppedAnimation(valueColor),
+                              ),
                             ),
-                          ),
-                        ),
-                        Center(
-                            child: Text(
-                          movie.voteAverage.toString(),
-                          style: TextStyle(color: Colors.white),
-                        )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        width: 250,
-                        child: Text(
-                          '${movie.originalTitle}',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Color(0xffDCFFFD),
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        width: 250,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Movie',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            color: Colors.white54,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.2,
-                          ),
+                            Container(
+                              alignment: Alignment.center,
+                              width: 50,
+                              child: Text(
+                                movie.voteAverage.toString(),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
-                    child: ElevatedButton(
-                        onPressed: () => print('${movie.voteAverage}'),
-                        child: Text('Watch'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF4DF687),
-                        )),
-                  ),
-                ],
-              ),
+                ),
+                Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 200,
+                      child: Text(
+                        '${movie.originalTitle}',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Color(0xffDCFFFD),
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 200,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        'Movie',
+                        textAlign: TextAlign.left,
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
+                  child: ElevatedButton(
+                      onPressed: () => print('${movie.voteAverage}'),
+                      child: Text('Watch'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF4DF687),
+                      )),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

@@ -2,6 +2,7 @@ import 'package:http/http.dart' as http;
 import 'package:movies_and_shows/models/movie.dart';
 import 'package:movies_and_shows/models/movie_request.dart';
 import 'package:movies_and_shows/models/tv_show.dart';
+import 'package:movies_and_shows/models/tv_show_detail.dart';
 import 'package:movies_and_shows/models/tv_show_request.dart';
 import 'package:movies_and_shows/utils/constants.dart';
 
@@ -42,7 +43,29 @@ class NetworkHelper {
         print("Http 401 - Unauthorized");
         return null;
         break;
+      case 404:
+        print("Http 404 - Not Found");
+        return null;
+        break;
+      default:
+        return null;
+    }
+  }
+
+  static Future<TvShowDetail> fecthTvShowById(int showId) async {
+    String tvShowDetailURL =
+        "https://api.themoviedb.org/3/tv/$showId?api_key=${Constants.apiKey}&language=en-US";
+    var response = await client.get(Uri.parse(tvShowDetailURL));
+    switch (response.statusCode) {
+      case 200:
+        var jsonString = response.body;
+        return tvShowDetailFromJson(jsonString);
+        break;
       case 401:
+        print("Http 401 - Unauthorized");
+        return null;
+        break;
+      case 404:
         print("Http 404 - Not Found");
         return null;
         break;

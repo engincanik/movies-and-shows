@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:movies_and_shows/models/tv_show.dart';
+import 'package:movies_and_shows/models/tv_show_detail.dart';
 import 'package:movies_and_shows/utils/constants.dart';
 import 'package:intl/intl.dart';
 
 class ShowDisplay extends StatelessWidget {
   final DateFormat dateFormat = DateFormat("dd.MM.yyyy");
-  final TvShow tvShow;
+  final TvShowDetail tvShow;
   ShowDisplay({@required this.tvShow});
 
   @override
   Widget build(BuildContext context) {
     Color valueColor = Colors.blueAccent;
+    print("BuildContext ${tvShow.id}");
     if (tvShow.voteAverage >= 8.0)
       valueColor = Colors.green[400];
     else if (7 <= tvShow.voteAverage && tvShow.voteAverage < 8)
@@ -38,82 +40,80 @@ class ShowDisplay extends StatelessWidget {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 16),
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 50.0,
-                    child: Stack(
-                      children: <Widget>[
-                        Center(
-                          child: Container(
-                            width: 50,
-                            height: 50,
-                            child: new CircularProgressIndicator(
-                              strokeWidth: 5,
-                              value: 1.0,
-                              valueColor: AlwaysStoppedAnimation(valueColor),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        height: 50.0,
+                        child: Stack(
+                          children: <Widget>[
+                            Container(
+                              width: 50,
+                              height: 50,
+                              child: new CircularProgressIndicator(
+                                strokeWidth: 3,
+                                value: 1.0,
+                                valueColor: AlwaysStoppedAnimation(valueColor),
+                              ),
                             ),
-                          ),
-                        ),
-                        Center(
-                            child: Text(
-                          tvShow.voteAverage.toString(),
-                          style: TextStyle(color: Colors.white),
-                        )),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    children: [
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        width: 250,
-                        child: Text(
-                          '${tvShow.name}',
-                          style: TextStyle(
-                            color: Color(0xffDCFFFD),
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.2,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        alignment: Alignment.centerLeft,
-                        width: 250,
-                        child: Text(
-                          'TV Show',
-                          style: TextStyle(
-                            color: Colors.white54,
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 1.2,
-                          ),
+                            Container(
+                              alignment: Alignment.center,
+                              width: 50,
+                              child: Text(
+                                tvShow.voteAverage.toString(),
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
-                    child: ElevatedButton(
-                        onPressed: () => print('${tvShow.voteAverage}'),
-                        child: Text('Watch'),
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF4DF687),
-                        )),
-                  ),
-                ],
-              ),
+                ),
+                Column(
+                  children: [
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 200,
+                      child: Text(
+                        '${tvShow.name}',
+                        style: TextStyle(
+                          color: Color(0xffDCFFFD),
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.centerLeft,
+                      width: 200,
+                      child: Text(
+                        'TV Show',
+                        style: TextStyle(
+                          color: Colors.white54,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 1.2,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
+                  child: ElevatedButton(
+                      onPressed: () => print('${tvShow.voteAverage}'),
+                      child: Text('Watch'),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF4DF687),
+                      )),
+                ),
+              ],
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -155,7 +155,7 @@ class ShowDisplay extends StatelessWidget {
                       Container(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          '2',
+                          tvShow.numberOfSeasons.toString(),
                           style: TextStyle(
                             color: Color(0xffDCFFFD),
                             fontSize: 16.0,
@@ -169,7 +169,7 @@ class ShowDisplay extends StatelessWidget {
                         child: Container(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            '28',
+                            tvShow.numberOfEpisodes.toString(),
                             style: TextStyle(
                               color: Color(0xffDCFFFD),
                               fontSize: 16.0,

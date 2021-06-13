@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movies_and_shows/detail/detail_bindings.dart';
 import 'package:movies_and_shows/detail/detail_screen.dart';
 import 'package:movies_and_shows/home/home_bindings.dart';
 import 'package:movies_and_shows/home/home_screen.dart';
@@ -23,9 +24,9 @@ class MyApp extends StatelessWidget {
           binding: HomeBindings(),
         ),
         GetPage(
-          name: '/detail',
-          page: () => DetailScreen(),
-        ),
+            name: '/detail',
+            page: () => DetailScreen(),
+            binding: DetailBindings()),
       ],
       initialRoute: '/splash',
     );
