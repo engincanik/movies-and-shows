@@ -12,7 +12,6 @@ class ShowDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color valueColor = Colors.blueAccent;
-    print("BuildContext ${tvShow.id}");
     if (tvShow.voteAverage >= 8.0)
       valueColor = Colors.green[400];
     else if (7 <= tvShow.voteAverage && tvShow.voteAverage < 8)
@@ -48,12 +47,12 @@ class ShowDisplay extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 50.0,
+                        height: 40.0,
                         child: Stack(
                           children: <Widget>[
                             Container(
-                              width: 50,
-                              height: 50,
+                              width: 40,
+                              height: 40,
                               child: new CircularProgressIndicator(
                                 strokeWidth: 3,
                                 value: 1.0,
@@ -62,7 +61,7 @@ class ShowDisplay extends StatelessWidget {
                             ),
                             Container(
                               alignment: Alignment.center,
-                              width: 50,
+                              width: 40,
                               child: Text(
                                 tvShow.voteAverage.toString(),
                                 style: TextStyle(color: Colors.white),

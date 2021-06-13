@@ -17,14 +17,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final homeController = Get.find<HomeController>();
   int rndNumber = Random().nextInt(8);
-  bool connectionInfo = true;
   @override
   Widget build(BuildContext context) {
+    if (Get.arguments[0]) {
+      homeController.fetchMovies();
+      homeController.fetchTvShows();
+    }
     return Scaffold(
       backgroundColor: Color(0xFF333333),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: connectionInfo == true
+          child: Get.arguments[0] == true
               ? Obx(() {
                   if (homeController.isLoadingMovies.value ||
                       homeController.isLoadingTvShows.value) {
@@ -39,17 +42,28 @@ class _HomeScreenState extends State<HomeScreen> {
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
                           child: Column(
                             children: [
-                              Container(
-                                height: MediaQuery.of(context).size.width,
-                                child: Hero(
-                                  tag: 'Movie Poster',
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15.0),
-                                    child: Image.network(
-                                        '${Constants.basePosterURL}${Constants.bigPosterSize}${homeController.movieList[rndNumber].posterPath}',
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        fit: BoxFit.fill),
+                              GestureDetector(
+                                onTap: () => {
+                                  Get.toNamed(
+                                    '/detail',
+                                    arguments: [
+                                      homeController.movieList[rndNumber],
+                                      'movie',
+                                    ],
+                                  ),
+                                },
+                                child: Container(
+                                  height: MediaQuery.of(context).size.width,
+                                  child: Hero(
+                                    tag: 'Movie Poster',
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      child: Image.network(
+                                          '${Constants.basePosterURL}${Constants.bigPosterSize}${homeController.movieList[rndNumber].posterPath}',
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          fit: BoxFit.fill),
+                                    ),
                                   ),
                                 ),
                               ),

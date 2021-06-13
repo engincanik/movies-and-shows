@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -10,16 +11,29 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool hasInternetConnection = false;
   void changeScreen() {
     Get.offNamed('/home');
+  }
+
+  void checkConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.wifi ||
+        connectivityResult == ConnectivityResult.mobile) {
+      hasInternetConnection = true;
+    } else
+      hasInternetConnection = false;
   }
 
   @override
   void initState() {
     super.initState();
+    checkConnection();
     Future.delayed(
       Duration(seconds: 5),
-      () => {Get.offNamed('/home')},
+      () => {
+        Get.offNamed('/home', arguments: [hasInternetConnection])
+      },
     );
   }
 

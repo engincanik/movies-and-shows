@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "567685409054",
+    "project_id": "movies-and-shows-c8eab",
+    "storage_bucket": "movies-and-shows-c8eab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:567685409054:android:54cea6e218f7290f8b810f",
+        "android_client_info": {
+          "package_name": "com.engin.movies_and_shows"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "567685409054-51kt788p619delq62vgl3r11q43k2ul7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.engin.movies_and_shows",
+            "certificate_hash": "e3fe9e2ec98a487c0a55585d200d56080cc219e5"
+          }
+        },
+        {
+          "client_id": "567685409054-uubbeufcnbjmpojdt880nvjemqegqfdu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALsKIBb8Sd7lb360Dkr9RAYJ5XVntw5Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567685409054-uubbeufcnbjmpojdt880nvjemqegqfdu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
