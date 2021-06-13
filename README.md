@@ -11,9 +11,11 @@ A Flutter application aims to display popular movies and tv shows. Information a
 
 ## Screenshots
                   
-Splash Screen  | Home Screen 
-:--: | :--:
-<img src="screenshots/splash.png" width="300">  | <img src="screenshots/home_screen.png" width="300">
+Splash Screen  | Home Screen |  **Trailer Display**
+:--: | :--: | :--:
+<img src="screenshots/splash.png" width="300">  | <img src="screenshots/home_screen.png" width="300"> | <img src="screenshots/trailer.png" width="300">
+
 **Movie Detail** |  **Tv Show Detail**
+:--: | :--: 
 <img src="screenshots/movie.png" width="300">  | <img src="screenshots/tv_show.png" width="300">
 
