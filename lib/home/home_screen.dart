@@ -6,6 +6,7 @@ import 'package:movies_and_shows/home/home_controller.dart';
 import 'package:movies_and_shows/home/movie_carousel.dart';
 import 'package:movies_and_shows/home/tv_show_carousel.dart';
 import 'package:movies_and_shows/utils/constants.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
@@ -108,8 +109,70 @@ class _HomeScreenState extends State<HomeScreen> {
                                 padding:
                                     const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
                                 child: ElevatedButton(
-                                    onPressed: () => print(
-                                        '${homeController.movieList[rndNumber].voteAverage}'),
+                                    onPressed: () {
+                                      homeController.fetchMovieVideo(
+                                          homeController
+                                              .movieList[rndNumber].id);
+                                      return showDialog<String>(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            AlertDialog(
+                                          title: const Text('Trailer'),
+                                          content: Obx(
+                                            () {
+                                              if (homeController
+                                                  .isMovieLoading.value) {
+                                                return Container(
+                                                  width: 200,
+                                                  height: 200,
+                                                  child: Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ),
+                                                );
+                                              } else {
+                                                if (homeController
+                                                        .movieVideoObs.value !=
+                                                    null) {
+                                                  if (homeController
+                                                          .movieVideoObs
+                                                          .value
+                                                          .results[0]
+                                                          .site ==
+                                                      "YouTube") {
+                                                    return YoutubePlayer(
+                                                      controller:
+                                                          YoutubePlayerController(
+                                                        initialVideoId:
+                                                            homeController
+                                                                .movieVideoObs
+                                                                .value
+                                                                .results[0]
+                                                                .key,
+                                                        flags:
+                                                            YoutubePlayerFlags(
+                                                                autoPlay:
+                                                                    false),
+                                                      ),
+                                                      showVideoProgressIndicator:
+                                                          true,
+                                                      progressIndicatorColor:
+                                                          Colors.amber,
+                                                    );
+                                                  } else {
+                                                    return Text(
+                                                        "No trailer is available.");
+                                                  }
+                                                } else {
+                                                  return Text(
+                                                      "No trailer is available.");
+                                                }
+                                              }
+                                            },
+                                          ),
+                                        ),
+                                      );
+                                    },
                                     child: Text('Watch'),
                                     style: ElevatedButton.styleFrom(
                                       primary: Color(0xFF4DF687),

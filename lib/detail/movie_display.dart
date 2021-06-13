@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movies_and_shows/detail/detail_controller.dart';
 import 'package:movies_and_shows/models/movie.dart';
 import 'package:movies_and_shows/utils/constants.dart';
 import 'package:intl/intl.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MovieDisplay extends StatelessWidget {
   final DateFormat dateFormat = DateFormat("dd.MM.yyyy");
   final Movie movie;
+  final detailController = Get.find<DetailController>();
   MovieDisplay({@required this.movie});
   @override
   Widget build(BuildContext context) {
@@ -106,7 +110,53 @@ class MovieDisplay extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
                   child: ElevatedButton(
-                      onPressed: () => print('${movie.voteAverage}'),
+                      onPressed: () {
+                        detailController.fetchMovieVideo(movie.id);
+                        return showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text('Trailer'),
+                            content: Obx(
+                              () {
+                                if (detailController.isMovieLoading.value) {
+                                  return Container(
+                                    width: 200,
+                                    height: 200,
+                                    child: Center(
+                                      child: CircularProgressIndicator(),
+                                    ),
+                                  );
+                                } else {
+                                  if (detailController.movieVideoObs.value !=
+                                      null) {
+                                    if (detailController.movieVideoObs.value
+                                            .results[0].site ==
+                                        "YouTube") {
+                                      return YoutubePlayer(
+                                        controller: YoutubePlayerController(
+                                          initialVideoId: detailController
+                                              .movieVideoObs
+                                              .value
+                                              .results[0]
+                                              .key,
+                                          flags: YoutubePlayerFlags(
+                                              autoPlay: false),
+                                        ),
+                                        showVideoProgressIndicator: true,
+                                        progressIndicatorColor: Colors.amber,
+                                      );
+                                    } else {
+                                      return Text("No trailer is available.");
+                                    }
+                                  } else {
+                                    return Text("No trailer is available.");
+                                  }
+                                }
+                              },
+                            ),
+                          ),
+                        );
+                      },
                       child: Text('Watch'),
                       style: ElevatedButton.styleFrom(
                         primary: Color(0xFF4DF687),
