@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:movies_and_shows/detail/detail_bindings.dart';
+import 'package:movies_and_shows/detail/detail_screen.dart';
+import 'package:movies_and_shows/home/home_bindings.dart';
 import 'package:movies_and_shows/home/home_screen.dart';
-import 'package:movies_and_shows/splash_screen/splash_bindings.dart';
 import 'package:movies_and_shows/splash_screen/splash_screen.dart';
 
 void main() {
@@ -15,12 +17,16 @@ class MyApp extends StatelessWidget {
       title: 'Movies and Shows',
       debugShowCheckedModeBanner: false,
       getPages: [
+        GetPage(name: '/splash', page: () => SplashScreen()),
         GetPage(
-            name: '/splash',
-            page: () => SplashScreen(),
-            binding: SplashBinding()),
-        GetPage(name: '/home', page: () => HomeScreen()),
-        // GetPage(name: '/detail', page: (Movie movie) => DetailPage(Movie() movie), binding: DetailBinding())
+          name: '/home',
+          page: () => HomeScreen(),
+          binding: HomeBindings(),
+        ),
+        GetPage(
+            name: '/detail',
+            page: () => DetailScreen(),
+            binding: DetailBindings()),
       ],
       initialRoute: '/splash',
     );
