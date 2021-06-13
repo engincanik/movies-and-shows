@@ -10,26 +10,6 @@ class HomeController extends GetxController {
   var movieList = <Movie>[].obs;
   var showList = <TvShow>[].obs;
 
-  @override
-  void onInit() {
-    fetchMovies();
-    fetchTvShows();
-    // fetchWhole();
-    super.onInit();
-  }
-
-  void fetchWhole() async {
-    isLoading(true);
-    try {
-      fetchMovies();
-      fetchTvShows();
-    } catch (e) {
-      print("Fetch whole error: $e");
-    } finally {
-      //
-    }
-  }
-
   void fetchMovies() async {
     isLoadingMovies(true);
     try {

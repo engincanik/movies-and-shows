@@ -17,14 +17,17 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final homeController = Get.find<HomeController>();
   int rndNumber = Random().nextInt(8);
-  bool connectionInfo = true;
   @override
   Widget build(BuildContext context) {
+    if (Get.arguments[0]) {
+      homeController.fetchMovies();
+      homeController.fetchTvShows();
+    }
     return Scaffold(
       backgroundColor: Color(0xFF333333),
       body: SafeArea(
         child: SingleChildScrollView(
-          child: connectionInfo == true
+          child: Get.arguments[0] == true
               ? Obx(() {
                   if (homeController.isLoadingMovies.value ||
                       homeController.isLoadingTvShows.value) {

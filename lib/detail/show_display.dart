@@ -12,7 +12,6 @@ class ShowDisplay extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color valueColor = Colors.blueAccent;
-    print("BuildContext ${tvShow.id}");
     if (tvShow.voteAverage >= 8.0)
       valueColor = Colors.green[400];
     else if (7 <= tvShow.voteAverage && tvShow.voteAverage < 8)

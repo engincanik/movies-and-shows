@@ -12,7 +12,6 @@ class DetailController extends GetxController {
       var tvShow = await NetworkHelper.fecthTvShowById(showId);
       if (tvShow != null) {
         tvShowDetail.value = tvShow;
-        print(tvShow.voteAverage);
       }
     } catch (e) {
       print("DetailController: $e");
