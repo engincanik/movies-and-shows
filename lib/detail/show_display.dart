@@ -48,12 +48,12 @@ class ShowDisplay extends StatelessWidget {
                   child: Column(
                     children: <Widget>[
                       SizedBox(
-                        height: 50.0,
+                        height: 40.0,
                         child: Stack(
                           children: <Widget>[
                             Container(
-                              width: 50,
-                              height: 50,
+                              width: 40,
+                              height: 40,
                               child: new CircularProgressIndicator(
                                 strokeWidth: 3,
                                 value: 1.0,
@@ -62,7 +62,7 @@ class ShowDisplay extends StatelessWidget {
                             ),
                             Container(
                               alignment: Alignment.center,
-                              width: 50,
+                              width: 40,
                               child: Text(
                                 tvShow.voteAverage.toString(),
                                 style: TextStyle(color: Colors.white),
