@@ -234,7 +234,7 @@ class ShowDisplay extends StatelessWidget {
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        'Release Date',
+                        'First Air Date',
                         textAlign: TextAlign.left,
                         style: TextStyle(
                           color: Colors.white54,
